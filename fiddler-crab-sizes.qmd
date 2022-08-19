@@ -11,6 +11,7 @@ execute:
 ```{r}
 library(lterdatasampler)
 library(tidyverse)
+library(kableExtra)
 ```
 
 ```{r}
@@ -34,9 +35,16 @@ ggplot(pie_crab, aes(x = latitude
 
 ```{r}
 crab_summary <- pie_crab |> 
-  group_by(size, site) |>
-  summarize(mean = mean(size, na.rm = FALSE),
-            sd = sd(size, na.rm = FALSE)) #, 
-            #sample_size = idek what to put here)
+  group_by(site) |>
+  summarize(mean = round(mean(size, na.rm = TRUE), 2)
+            , standard_deviation = round(sd(size, na.rm = TRUE), 2) 
+            , sample_size = n())
 ```
 
+```{r}
+crab_summary %>% 
+  kable(col.names = c("Site", "Size Mean (mm)", "Size Standard Deviation (mm)", "Sample Size")) %>% 
+  kable_styling(bootstrap_options = "striped") %>% 
+  column_spec(1, bold = TRUE, background = "orange") %>% 
+  add_header_above(c(" " = 2, "Seedling dimensions" = 2))
+```
