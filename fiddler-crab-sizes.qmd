@@ -2,6 +2,8 @@
 title: "Fiddler crab sizes"
 format: html
 editor: visual
+execute: 
+  echo: false
 ---
 
 ## Make a graph
@@ -20,5 +22,21 @@ View(pie_crab)
 ```{r}
 ggplot(pie_crab, aes(x = latitude
                      , y = size)) +
-  geom_jitter()
+  geom_jitter(aes(color = latitude)) + 
+  theme_minimal() + 
+  labs(title = "Fiddler Crab Carapace in different Latitudes", 
+       x = "Carapace width", 
+       y = "Latitude", 
+       caption = "This is our caption! Conga Crabs!!!") 
 ```
+
+### H - here's an unfinished summary table, pls help
+
+```{r}
+crab_summary <- pie_crab |> 
+  group_by(size, site) |>
+  summarize(mean = mean(size, na.rm = FALSE),
+            sd = sd(size, na.rm = FALSE)) #, 
+            #sample_size = idek what to put here)
+```
+
