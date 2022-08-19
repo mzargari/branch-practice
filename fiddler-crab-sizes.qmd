@@ -1,0 +1,20 @@
+---
+title: "Fiddler crab sizes"
+format: html
+editor: visual
+---
+
+## Make a graph
+
+```{r}
+library(lterdatasampler)
+library(tidyverse)
+
+```
+
+
+
+```{r}
+View(pie_crab)
+```
+
