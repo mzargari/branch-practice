@@ -9,12 +9,16 @@ editor: visual
 ```{r}
 library(lterdatasampler)
 library(tidyverse)
-
 ```
-
-
 
 ```{r}
 View(pie_crab)
 ```
 
+### I am creating a plot of fiddler crab carapace widths observed at the different latitudes
+
+```{r}
+ggplot(pie_crab, aes(x = latitude
+                     , y = size)) +
+  geom_jitter()
+```
